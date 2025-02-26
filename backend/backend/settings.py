@@ -28,8 +28,8 @@ DEBUG = os.environ.get('DEBUG', 'True')
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS',
                                  'http://localhost,http://localhost:8000,http://localhost:80,http://localhost:5173').split(',')
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS',
-                                 'http://localhost,http://localhost:8000,http://localhost:80,http://localhost:5173').split(',')
+CORS_ALLOWED_ORIGINS = ['https://' + os.getenv('REPL_SLUG') + '.repl.co']
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
