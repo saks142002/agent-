@@ -1,4 +1,4 @@
-modules = ["python-3.12", "web", "bash"]
+modules = ["bash", "nodejs-20", "python-3.12", "web"]
 run = "python3 manage.py runserver 0.0.0.0:3000"
 
 [nix]
@@ -8,7 +8,7 @@ channel = "stable-24_05"
 run = ["sh", "-c", "python3 manage.py runserver 0.0.0.0:3000"]
 
 [workflows]
-runButton = "Run Django"
+runButton = "Frontend"
 
 [[workflows.workflow]]
 name = "Run Django"
@@ -17,3 +17,19 @@ author = 39981793
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd backend && python manage.py runserver 0.0.0.0:3000"
+
+[[workflows.workflow]]
+name = "Backend"
+author = 39981793
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd backend && python manage.py runserver 0.0.0.0:8000"
+
+[[workflows.workflow]]
+name = "Frontend"
+author = 39981793
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm run dev -- --host 0.0.0.0"
